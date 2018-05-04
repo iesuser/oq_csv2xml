@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import csv, sys, os
+import csv, sys, os, numpy
 import os.path as path
 import argparse as ap
 from lxml import etree
@@ -39,7 +39,7 @@ for row in rows:
 		if 'area_source' in locals():
 			xml_content += etree.tostring(area_source, pretty_print = True)
 					
-		area_source = etree.Element('areaSource')
+		area_source = etree.Element('simpleFaultSource')
 		area_source.attrib['id'] = row[2]
 	# თუ შეგვხდა source name დავამატოთ area_source როგორც ატრიბუტი
 	if rm_white_space(row[0]) == 'source name':
@@ -47,10 +47,66 @@ for row in rows:
 	# თუ შეგვხდა tectonicRegion დავამატოთ area_source როგორც ატრიბუტი
 	if rm_white_space(row[0]) == 'tectonicRegion':
 		area_source.attrib['tectonicRegion'] = row[2]
+	
+	if rm_white_space(row[0]) == 'areaGeometry latitude':
+		simpleFaultGeometry = etree.SubElement(area_source,'simpleFaultGeometry')
+		LineString = etree.SubElement(simpleFaultGeometry, 'gmlLineString')
+		posList = etree.SubElement(LineString, 'gmlposList')
+		latitude_values = ''
+		longitude_values = ''
+		for id in numpy.arange(2,len(row),1):
+			if row[id] != '':
+				latitude_values += row[id] + ' '
+		posList.text = latitude_values
+
+	if rm_white_space(row[0]) == 'areaGeometry longitude':
+		longitude_values = ''
+		for id in numpy.arange(2,len(row),1):
+			if row[id] != '':
+				longitude_values += row[id] + ' '
+		longitude_latitude_pirs = latitude_values + '\n' + longitude_values		
+		posList.text = longitude_latitude_pirs	
+	
+
 	# თუ შეგვხდა dip დავამატოთ area_source როგორც ატრიბუტი
 	if rm_white_space(row[0]) == 'dip':
-		etree.SubElement(area_source,row[0])
-			
+		dip = etree.SubElement(simpleFaultGeometry,row[0])
+		dip.text = row[2]
+
+	# თუ შეგვხდა upperSeismoDepth დავამატოთ area_source როგორც ატრიბუტი
+	if rm_white_space(row[0]) == 'upperSeismoDepth':
+		upperSeismoDepth = etree.SubElement(simpleFaultGeometry,row[0])
+		upperSeismoDepth.text = row[2]
+	# თუ შეგვხდა lowerSeismoDepth დავამატოთ area_source როგორც ატრიბუტი
+	if rm_white_space(row[0]) == 'lowerSeismoDepth':
+		lowerSeismoDepth = etree.SubElement(simpleFaultGeometry,row[0])
+		lowerSeismoDepth.text = row[2]
+	# თუ შეგვხდა magScaleRel დავამატოთ area_source როგორც ატრიბუტი
+	if rm_white_space(row[0]) == 'magScaleRel':
+		magScaleRel = etree.SubElement(area_source,row[0])
+		magScaleRel.text = row[2]
+	# თუ შეგვხდა ruptAspectRatio დავამატოთ area_source როგორც ატრიბუტი
+	if rm_white_space(row[0]) == 'ruptAspectRatio':
+		ruptAspectRatio = etree.SubElement(area_source,row[0])
+		ruptAspectRatio.text = row[2]
+	# თუ შეგვხდა incrementalMFD minMag დავამატოთ area_source როგორც ატრიბუტი
+	if rm_white_space(row[0]) == 'incrementalMFD minMag':
+		print 'yes'
+		incrementalMFD = etree.SubElement(area_source,'incrementalMFD')
+		incrementalMFD.attrib['minMag'] = row[2]
+	# თუ შეგვხდა incrementalMFD minMag დავამატოთ area_source როგორც ატრიბუტი
+	if rm_white_space(row[0]) == 'incrementalMFD binWidth':
+		print 'yes'
+		incrementalMFD.attrib['binWidth'] = row[2]
+	# თუ შეგვხდა incrementalMFD minMag დავამატოთ area_source როგორც ატრიბუტი
+	if rm_white_space(row[0]) == 'incrementalMFD occurRates':
+		occurRates = etree.SubElement(incrementalMFD, 'occurRates')
+		values = ''
+		print len(row)
+		for id in numpy.arange(2,len(row),1):
+			if row[id] != '':
+				values += row[id] + ' '
+		occurRates.text = values
 
 		
 
@@ -66,7 +122,7 @@ xml_file.write(xml_content)
 
 
 
-# for raw in csv_data:
+#   for raw in csv_data:
 # 	print raw
 
 

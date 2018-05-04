@@ -1,9 +1,48 @@
-<areaSource id="1" name="Mount Diablo Thrust" tectonicRegion="Active Shallow Crust">
-  <dip/>
-</areaSource>
-<areaSource id="2" name="Mount Diablo Thrust" tectonicRegion="Active Shallow Crust">
-  <dip/>
-</areaSource>
-<areaSource id="3" name="Mount Diablo Thrust" tectonicRegion="Active Shallow Crust">
-  <dip/>
-</areaSource>
+<simpleFaultSource id="1" name="Mount Diablo Thrust" tectonicRegion="Active Shallow Crust">
+  <simpleFaultGeometry>
+    <gmlLineString>
+      <gmlposList>-122.5 -121.5 -121.5 -121.6 
+37.5 37.5 38.5 38.6 </gmlposList>
+    </gmlLineString>
+    <dip>55</dip>
+    <upperSeismoDepth>0</upperSeismoDepth>
+    <lowerSeismoDepth>10</lowerSeismoDepth>
+  </simpleFaultGeometry>
+  <magScaleRel>PeerMSR</magScaleRel>
+  <ruptAspectRatio>1.5</ruptAspectRatio>
+  <incrementalMFD minMag="5.05" binWidth="0.1">
+    <occurRates>0.15 0.08 0.05 0.03 0.03 </occurRates>
+  </incrementalMFD>
+</simpleFaultSource>
+<simpleFaultSource id="2" name="Mount Diablo Thrust" tectonicRegion="Active Shallow Crust">
+  <simpleFaultGeometry>
+    <gmlLineString>
+      <gmlposList>-122.5 -121.5 -121.5 -121.6 
+37.5 37.5 38.5 38.6 </gmlposList>
+    </gmlLineString>
+    <dip>55</dip>
+    <upperSeismoDepth>0</upperSeismoDepth>
+    <lowerSeismoDepth>10</lowerSeismoDepth>
+  </simpleFaultGeometry>
+  <magScaleRel>PeerMSR</magScaleRel>
+  <ruptAspectRatio>1.5</ruptAspectRatio>
+  <incrementalMFD minMag="5.05" binWidth="0.1">
+    <occurRates>0.15 0.08 0.05 0.03 0.03 </occurRates>
+  </incrementalMFD>
+</simpleFaultSource>
+<simpleFaultSource id="3" name="Mount Diablo Thrust" tectonicRegion="Active Shallow Crust">
+  <simpleFaultGeometry>
+    <gmlLineString>
+      <gmlposList>-122.5 -121.5 -121.5 -121.6 
+37.5 37.5 38.5 38.6 </gmlposList>
+    </gmlLineString>
+    <dip>55</dip>
+    <upperSeismoDepth>0</upperSeismoDepth>
+    <lowerSeismoDepth>10</lowerSeismoDepth>
+  </simpleFaultGeometry>
+  <magScaleRel>PeerMSR</magScaleRel>
+  <ruptAspectRatio>1.5</ruptAspectRatio>
+  <incrementalMFD minMag="5.05" binWidth="0.1">
+    <occurRates>0.15 0.08 0.05 0.03 0.03 </occurRates>
+  </incrementalMFD>
+</simpleFaultSource>
