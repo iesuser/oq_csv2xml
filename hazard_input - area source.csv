@@ -15,6 +15,7 @@ incrementalMFD minMag,"Minimum value of magnitude representing the mid
 point of the first magnitude bin",5.05,,,,
 incrementalMFD binWidth,Magnitude bin width,0.1,,,,
 incrementalMFD occurRates,Annual number of earthquakes for each magnitude bin,0.15,0.08,0.05,0.03,0.03
+rake,"Rake angle (specified following the Aki-Richards convention; see Aki and Richards, (2002)) [degrees]",30,,,,
 NodalPlane strike,"The strike direction correspond to the angle between the north and the direction you
 take so that when you walk along the fault trace the fault dips on your right.",0,90,,,
 NodalPlane dip,"dip is the steepest angle of descent of the fault plane relative to a horizontal plane;
