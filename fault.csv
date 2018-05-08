@@ -20,7 +20,7 @@ rake,"Rake angle (specified following the Aki-Richards convention; see Aki and R
 hypo alongStrike,The strike direction correspond to the angle between the north and the direction you take so that when you walk along the fault trace the fault dips on your right,25,30,40,,
 hypo downDip,"A representative value of the dip angle (specified following the Aki-Richards convention; see Aki and Richards, (2002)) [degrees]",30,45,15,,
 hypo weight,Weight for alongStrike/Downdip values,0.5,0.5,,,
-slip value,"It is a list of the possible rupture slip directions [degrees], and their corresponding weights. The angle describing each slip direction is measured counter-clockwise using the fault strike direction as reference",0,45,90,,
+slip value,"It is a list of the possible rupture slip directions [degrees], and their corresponding weights. The angle describing each slip direction is measured counter-clockwise using the fault strike direction as reference",0,45,90, ,
 slip weight,Weight for slip direction,0.333,0.333,0.334,,
 source id,"A unique string used to identify the given source. This string can
 contain letters (a–z; A–Z), numbers (0–9), dashes (-), and underscores (_), with a

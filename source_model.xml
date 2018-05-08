@@ -1,10 +1,8 @@
 <simpleFaultSource id="1" name="source name" tectonicRegion="tectonicRegion">
   <simpleFaultGeometry>
     <gmlLineString>
-      <gmlposList>
--121.8229 -122.0388 
-37.7301 37.8771 
-</gmlposList>
+      <gmlposList>-121.8229 -122.0388 
+37.7301 37.8771 </gmlposList>
     </gmlLineString>
     <dip>55</dip>
     <upperSeismoDepth>96</upperSeismoDepth>
@@ -30,10 +28,8 @@
 <simpleFaultSource id="2" name="source name" tectonicRegion="tectonicRegion">
   <simpleFaultGeometry>
     <gmlLineString>
-      <gmlposList>
--121.8229 -122.0388 
-37.7301 37.8771 
-</gmlposList>
+      <gmlposList>-121.8229 -122.0388 
+37.7301 37.8771 </gmlposList>
     </gmlLineString>
     <dip>55</dip>
     <upperSeismoDepth>96</upperSeismoDepth>
@@ -59,10 +55,8 @@
 <simpleFaultSource id="3" name="source name" tectonicRegion="tectonicRegion">
   <simpleFaultGeometry>
     <gmlLineString>
-      <gmlposList>
--121.8229 -122.0388 
-37.7301 37.8771 
-</gmlposList>
+      <gmlposList>-121.8229 -122.0388 
+37.7301 37.8771 </gmlposList>
     </gmlLineString>
     <dip>55</dip>
     <upperSeismoDepth>96</upperSeismoDepth>

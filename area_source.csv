@@ -1,0 +1,24 @@
+source id,"A unique string used to identify the given. This string can
+contain letters (a–z; A–Z), numbers (0–9), dashes (-), and underscores (_), with a
+maximum of 100 characters",1,,,,
+source name,Name of fault,Mount Diablo Thrust,,,,
+tectonicRegion,Tectonic region type. ,Active Shallow Crust,,,,
+areaGeometry latitude,List of Longitude-Latitude [degrees] pairs,-122.5,-121.5,-121.5,,
+areaGeometry longitude,,37.5,37.5,38.5,,
+upperSeismoDepth,The upper seismogenic depth [km],0,,,,
+lowerSeismoDepth,The lower seismogenic depth [km],10,,,,
+magScaleRel,Magnitude-scaling relationship,PeerMSR,,,,
+ruptAspectRatio,The rupture aspect ratio,1.5,,,,
+incrementalMFD minMag,"Minimum value of magnitude representing the mid
+point of the first magnitude bin",5.05,,,,
+incrementalMFD binWidth,Magnitude bin width,0.1,,,,
+incrementalMFD occurRates,Annual number of earthquakes for each magnitude bin,0.15,0.08,0.05,0.03,0.03
+NodalPlane strike,"The strike direction correspond to the angle between the north and the direction you
+take so that when you walk along the fault trace the fault dips on your right.",0,90,,,
+NodalPlane dip,"dip is the steepest angle of descent of the fault plane relative to a horizontal plane;
+it is measured in degrees [0,90]",90,45,,,
+NodalPlane rake,"the direction in which a hanging wall block moves during a rupture,
+measured relative to fault strike on the plane of the fault",0,90,,,
+nodalPlane probability,Weight for strike/dip/rake values,0.3,0.7,,,
+hypoDepth depth,Hypocenter depth value,4,8,,,
+hypoDepth probability,Weight of hypocenter depth value,0.5,0.5,,,

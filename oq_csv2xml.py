@@ -15,7 +15,7 @@ def rm_white_space(text):
 	return " ".join(text.split())
 
 #xml ფაილის მისამართი სადაც შევინახავთ
-xml_file = open('test.xml', 'w')
+xml_file = open('source_model.xml', 'w')
 # შევამოწმოთ მომხარებლის მიერ შეყვანილი csv  ფაილი არსებობს თუ არა
 csv_file_name = args.csv_file_name
 if not path.isfile(csv_file_name):
@@ -57,18 +57,10 @@ for i in range(len(rows)):
 			latitude_values = ''
 			longitude_values = ''
 			for id in numpy.arange(2,len(rows[i]),1):
-				if rows[i][id] != '':
+				if rm_white_space(rows[i][id]) !=  '':
 					latitude_values += rows[i][id] + ' '
-			posList.text = latitude_values
-
-		if rm_white_space(rows[i][0]) == 'faultGeometry longitude':
-			longitude_values = ''
-			for id in numpy.arange(2,len(row),1):
-				if rows[i][id] != '':
-					longitude_values += rows[i][id] + ' '
-			longitude_latitude_pirs = latitude_values + '\n' + longitude_values		
-			posList.text = '\n' + longitude_latitude_pirs + '\n'	
-		
+					longitude_values += rows[i+1][id] + ' '
+			posList.text = latitude_values + '\n' + longitude_values	
 
 		# თუ შეგვხდა dip დავამატოთ simpleFaultSource როგორც ატრიბუტი
 		if rm_white_space(rows[i][0]) == 'dip':
@@ -103,7 +95,7 @@ for i in range(len(rows)):
 			occurRates = etree.SubElement(incrementalMFD, 'occurRates')
 			occurrate_values = ''
 			for id in numpy.arange(2,len(rows[i]),1):
-				if rows[i][id] != '' :
+				if rm_white_space(rows[i][id]) != '' :
 					occurrate_values += rows[i][id] + ' '
 			occurRates.text = occurrate_values
 		# თუ შეგვხდა rake minMag დავამატოთ simpleFaultSource როგორც ატრიბუტი
@@ -114,48 +106,19 @@ for i in range(len(rows)):
 		if rm_white_space(rows[i][0]) == 'hypo alongStrike':
 			hypolist = etree.SubElement(simpleFaultSource,'hypoList')
 			for id in numpy.arange(2,len(rows[i]),1):
-				if rows[i][id] != '' :
+				if rm_white_space(rows[i][id]) != '' :
 					hypo = etree.SubElement(hypolist,'hypo')
 					hypo.attrib['alongStrike'] = rows[i][id]
-					hypo.attrib['downDip'] = rows[i+1][id]
-		# # თუ შეგვხდა incrementalMFD minMag დავამატოთ simpleFaultSource როგორც ატრიბუტი
-		# if rm_white_space(rows[i][0]) == 'hypo downDip':
-		# 	for id in numpy.arange(2,len(row),1):
-		# 		if row[id] != '' :
-		# 			hypo.attrib['downDip'] = row[id]		
-
-
+					hypo.attrib['downDip'] = rows[i+1][id]		
 
 		# თუ შეგვხდა slip value minMag დავამატოთ slipList როგორც simpleFaultSource subelement
 		if rm_white_space(rows[i][0]) == 'slip value':
 			slipList = etree.SubElement(simpleFaultSource,'slipList')
 			for id in numpy.arange(2,len(rows[i]),1):
-				if rows[i][id] != '' :
+				if rm_white_space(rows[i][id]) != '' :
 					slip = etree.SubElement(slipList,'slip')
 					slip.attrib['weight'] = rows[i][id]
 					slip.text = rows[i+1][id]
 			
-
-
-
-			
-
-
-
-		# simpleFaultSource.attrib['ffff'] = '1'
-		# prod = etree.SubElement(simpleFaultSource,'test')
-		
-
 xml_content += etree.tostring(simpleFaultSource, pretty_print=True)
 xml_file.write(xml_content)
-
-
-
-
-#   for raw in csv_data:
-# 	print raw
-
-
-		
-
-
