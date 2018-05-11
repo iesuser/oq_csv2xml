@@ -1,0 +1,57 @@
+<simpleFaultSource id="1" name="Mount Diablo Thrust" tectonicRegion="Active Shallow Crust">
+  <simpleFaultGeometry>
+    <gml:LineString>
+      <gml:posList>
+          -121.8229 37.7301
+          -122.0388 37.8771</gml:posList>
+    </gml:LineString>
+    <dip>55</dip>
+    <upperSeismoDepth>96</upperSeismoDepth>
+    <lowerSeismoDepth>56</lowerSeismoDepth>
+  </simpleFaultGeometry>
+  <magScaleRel>WC1994</magScaleRel>
+  <ruptAspectRatio>1.5</ruptAspectRatio>
+  <incrementalMFD minMag="5.05" binWidth="0.1">
+    <occurRates>0.15 0.08 0.05 0.03 0.03 </occurRates>
+  </incrementalMFD>
+  <rake>30</rake>
+  <hypoList>
+    <hypo alongStrike="25" downDip="30" weight="0.5"/>
+    <hypo alongStrike="30" downDip="45" weight="0.5"/>
+  </hypoList>
+  <slipList>
+    <slip weight="0.333">0</slip>
+    <slip weight="0.333">45</slip>
+    <slip weight="0.334">90</slip>
+  </slipList>
+</simpleFaultSource>
+
+<areaSource id="1" name="Mount Diablo Thrust" tectonicRegion="Active Shallow Crust">
+  <areaGeometry>
+    <gmlPoligon>
+      <gml:exterior>
+        <gml:LinearRing>
+          <gml:posList>
+            -122.5 37.5
+            -121.5 37.5
+            -121.5 38.5</gml:posList>
+        </gml:LinearRing>
+      </gml:exterior>
+    </gmlPoligon>
+    <upperSeismoDepth>0</upperSeismoDepth>
+    <lowerSeismoDepth>10</lowerSeismoDepth>
+  </areaGeometry>
+  <magScaleRel>PeerMSR</magScaleRel>
+  <ruptAspectRatio>1.6</ruptAspectRatio>
+  <incrementalMFD minMag="5.05" binWidth="0.1">
+    <occurRates>0.15 0.08 0.05 0.03 0.03 </occurRates>
+  </incrementalMFD>
+  <nodalPlaneDist>
+    <nodalPlane probability="0.3" strike="0" dip="90" rake="0"/>
+    <nodalPlane probability="0.7" strike="90" dip="45" rake="90"/>
+  </nodalPlaneDist>
+  <hypoDepthDist>
+    <hypoDepth probability="0.5" depth="4"/>
+    <hypoDepth probability="0.5" depth="8"/>
+  </hypoDepthDist>
+</areaSource>
