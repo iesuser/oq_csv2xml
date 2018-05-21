@@ -23,7 +23,14 @@ area_source_rows_order =  [[False, "source id", "source name", "tectonicRegion"]
 						  [False, "upperSeismoDepth", "lowerSeismoDepth"],
 						  [False, "incrementalMFD minMag", "incrementalMFD binWidth", "incrementalMFD occurRates"],
 						  [True, "nodalPlane strike", "nodalPlane dip","nodalPlane rake", "nodalPlane probability"],
-						  [True, "hypoDepth depth", "hypoDepth probability"]]			  
+						  [True, "hypoDepth depth", "hypoDepth probability"]]	
+
+compex_fault_rows_order = [[False, "source id", "source name", "tectonicRegion"],
+						  [True, "faultTopEdge latitude", "faultTopEdge longitude", "faultTopEdge elevation"],
+						  [True, "intermediateEdge latitude", "intermediateEdge longitude", "intermediateEdge elevation"],
+						  [True, "faultBottomEdge latitude", "faultBottomEdge longitude", "faultBottomEdge elevation"],
+						  [False, "truncGutenbergRichterMFD aValue", "truncGutenbergRichterMFD bValue", "truncGutenbergRichterMFD minMag", "truncGutenbergRichterMFD maxMag"]
+						  ]		  
 
 replaces = {"gmlposList":"gml:posList",
 			"gmlexterior":"gml:exterior",
@@ -43,6 +50,13 @@ simplefault_common_rows = ["source type", "source id", "source name", "faultGeom
 							"magScaleRel", "ruptAspectRatio", "incrementalMFD minMag",
 							"incrementalMFD binWidth", "incrementalMFD occurRates",	"rake", 
 							"hypo alongStrike", "hypo downDip", "hypo weight", "slip value", "slip weight"]
+
+compexfault_common_rows = ["source type", "source id", "source name", "faultTopEdge latitude", "faultTopEdge longitude", "faultTopEdge elevation",
+						  "intermediateEdge latitude", "intermediateEdge longitude", "intermediateEdge elevation",
+						  "faultBottomEdge latitude", "faultBottomEdge longitude", "faultBottomEdge elevation", 
+						  "truncGutenbergRichterMFD aValue", "truncGutenbergRichterMFD bValue",
+						  "truncGutenbergRichterMFD minMag", "truncGutenbergRichterMFD maxMag"
+						  ]
 
 
 errors = ""		
@@ -96,6 +110,9 @@ def check_typing_errors(source_rows, source_start_index):
 	if source_rows[0][2] == 'areaSource':
 		if check_common_rows_exist(source_rows, areasource_common_rows, source_start_index):
 			check_rows_order(source_rows, area_source_rows_order, source_start_index)
+	if 	source_rows[0][2] == 'complexFaultSource':
+		if check_common_rows_exist(source_rows, compexfault_common_rows, source_start_index):
+			check_rows_order(source_rows, compex_fault_rows_order, source_start_index)
 def replace_tag_names(content):
 	for old, new in replaces.iteritems():
 		content = content.replace(old, new)
@@ -302,6 +319,78 @@ def fault_source_generator(i, source_element):
 				slip.attrib['weight'] = rows[i+1][id]
 				slip.text = rows[i][id]
 
+def complex_fault_generator(i, source_element):
+	global xml_content
+	global incrementalMFD
+	global complexFaultGeometry
+	# global source_element
+	if rows[i][0] == 'source id':
+		source_element.attrib['id'] = rows[i][2]
+	# თუ შეგვხდა source name დავამატოთ simpleFaultSource როგორც ატრიბუტი
+	if rows[i][0] == 'source name':
+		source_element.attrib['name'] = rows[i][2]
+	# თუ შეგვხდა tectonicRegion დავამატოთ simpleFaultSource როგორც ატრიბუტი
+	if rows[i][0] == 'tectonicregion':
+		source_element.attrib['tectonicRegion'] = rows[i][2]
+	
+	if rows[i][0] == 'faulttopedge latitude':
+		complexFaultGeometry = etree.SubElement(source_element, 'complexFaultGeometry')
+		faultTopEdge = etree.SubElement(complexFaultGeometry, 'faultTopEdge')
+		LineString = etree.SubElement(faultTopEdge, 'gmlLineString')
+		posList = etree.SubElement(LineString, 'gmlposList')
+		lat_long_elev_pairs = ''
+		for id in numpy.arange(2, len(rows[i]), 1):
+			if rows[i][id] !=  '':
+				lat_long_elev_pairs += '\n            ' + rows[i][id] + ' ' + rows[i+1][id] + ' ' + rows[i+2][id]
+		posList.text = 	lat_long_elev_pairs	
+
+	if rows[i][0] == 'intermediateedge latitude':
+		complexFaultGeometry = etree.SubElement(source_element, 'complexFaultGeometry')
+		faultTopEdge = etree.SubElement(complexFaultGeometry, 'faultTopEdge')
+		LineString = etree.SubElement(faultTopEdge, 'gmlLineString')
+		posList = etree.SubElement(LineString, 'gmlposList')
+		lat_long_elev_pairs = ''
+		for id in numpy.arange(2, len(rows[i]), 1):
+			if rows[i][id] !=  '':
+				lat_long_elev_pairs += '\n            ' + rows[i][id] + ' ' + rows[i+1][id] + ' ' + rows[i+2][id]
+		posList.text = 	lat_long_elev_pairs	
+
+	if rows[i][0] == 'faultbottomedge latitude':
+		complexFaultGeometry = etree.SubElement(source_element, 'complexFaultGeometry')
+		faultTopEdge = etree.SubElement(complexFaultGeometry, 'faultTopEdge')
+		LineString = etree.SubElement(faultTopEdge, 'gmlLineString')
+		posList = etree.SubElement(LineString, 'gmlposList')
+		lat_long_elev_pairs = ''
+		for id in numpy.arange(2, len(rows[i]), 1):
+			if rows[i][id] !=  '':
+				lat_long_elev_pairs += '\n            ' + rows[i][id] + ' ' + rows[i+1][id] + ' ' + rows[i+2][id]
+		posList.text = 	lat_long_elev_pairs	
+
+	# თუ შეგვხდა magScaleRel დავამატოთ simpleFaultSource როგორც ატრიბუტი
+	if rows[i][0] == 'magscalerel':
+		magScaleRel = etree.SubElement(source_element, 'magScaleRel')
+		magScaleRel.text = rows[i][2]
+	
+	# თუ შეგვხდა ruptAspectRatio დავამატოთ simpleFaultSource როგორც ატრიბუტი
+	if rows[i][0] == 'ruptaspectratio':
+		ruptAspectRatio = etree.SubElement(source_element, 'ruptAspectRatio')
+		ruptAspectRatio.text = rows[i][2]		
+	if rows[i][0] == 'truncgutenbergrichtermfd avalue':
+		truncGutenbergRichterMFD = etree.SubElement(source_element, 'truncGutenbergRichterMFD')
+		for id in numpy.arange(2,len(rows[i]),1):
+			if rows[i][id] != '' :
+				# აქ ხდება hypo ტეგის დამატება hypolist -ის ქვეელემენტად და ივსება მისი ატრიბუტები
+				truncGutenbergRichterMFD.attrib['aValue'] = rows[i][id]
+				truncGutenbergRichterMFD.attrib['abValue'] = rows[i+1][id]
+				truncGutenbergRichterMFD.attrib['minMag'] = rows[i+2][id]
+				truncGutenbergRichterMFD.attrib['maxMag'] = rows[i+3][id]
+
+	# თუ შეგვხდა rake minMag დავამატოთ simpleFaultSource როგორც ატრიბუტი
+	if rows[i][0] == 'rake':
+		rake = etree.SubElement(source_element, 'rake')
+		rake.text = rows[i][2]				
+	
+
 # xml ფაილის მისამართი სადაც შევინახავთ
 xml_file = open(output_file_path, 'w')
 
@@ -361,6 +450,8 @@ for i in range(len(rows)):
 		fault_source_generator(i, source_element)
 	if source_type == 'areaSource':
 		area_source_generator(i, source_element)
+	if  source_type == 'complexFaultSource':
+		complex_fault_generator(i, source_element)
 # aq xdeba bolos dagenerirebuli source_element - is damateba source_model - shi 
 source_model.append(source_element)
 xml_content = etree.tostring(root_element, pretty_print=True)

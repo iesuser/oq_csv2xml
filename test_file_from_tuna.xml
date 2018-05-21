@@ -1,0 +1,120 @@
+<nrml xmlns:gml="http://www.opengis.net/gml" xmlns="http://openquake.org/xmlns/nrml/0.4">
+  <sourceModel name="Caucasus Faults">
+    <areaSource id="A1" name="NW GC" tectonicRegion="Active Shallow Crust">
+      <areaGeometry>
+        <gmlPoligon>
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList>
+                43.37367005 43.11891841
+                42.82787169 42.52447065
+                42.29861266 42.70706879
+                41.24009462 42.9617724
+                39.91694706 43.34786918
+                39.00728311 43.92243812
+                39.4869241 44.13648475
+                40.16503723 43.88668853
+                41.22355527 43.48002642
+                42.23245529 43.27566186
+                43.37367005 43.11891841</gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gmlPoligon>
+        <upperSeismoDepth>0</upperSeismoDepth>
+        <lowerSeismoDepth>20</lowerSeismoDepth>
+      </areaGeometry>
+      <magScaleRel>PeerMSR</magScaleRel>
+      <ruptAspectRatio>1.5</ruptAspectRatio>
+      <incrementalMFD minMag="3.75" binWidth="0.1">
+        <occurRates>1.4488 1.1798 0.9607 0.7823 0.6371 0.5188000389 0.422474013 0.3440329188 0.2801560464 0.228139245 0.1857804455 0.1512864388 0.1231969625 0.1003228821 0.0816958508 0.0665273156 0.0541751347 0.0441163933 0.0359252666 0.0292549931 0.0238231947 0.0193999227 0.0157979233 0.01286471 0.0104761088 0.0085310011 0.0069470432 0.00565718 0.0046068068 0.0037514572 0.0030549211 0.0024877114 0.002025816 0.0016496811 0.0013433835 0.0010939564 0.0008908406 0.0007254375 0.0005907449 </occurRates>
+      </incrementalMFD>
+      <nodalPlaneDist>
+        <nodalPlane probability="0.1" strike="0" dip="90" rake="0"/>
+        <nodalPlane probability="0.9" strike="90" dip="45" rake="90"/>
+      </nodalPlaneDist>
+      <hypoDepthDist>
+        <hypoDepth probability="0.5" depth="8"/>
+        <hypoDepth probability="0.5" depth="12"/>
+      </hypoDepthDist>
+    </areaSource>
+    <simpleFaultSource id="F1" name="Greater Caucasus Thrust" tectonicRegion="Active Shallow Crust">
+      <simpleFaultGeometry>
+        <gml:LineString>
+          <gml:posList>
+            38.32529 44.55688
+            39.51126 44.07609
+            41.0498 43419
+            42.0755 43.1786
+            43.40569 42.89013
+            44.31921 42.5696
+            46.05007 42.0247
+            47.66874 41.11119
+            49.30345 40.79066</gml:posList>
+        </gml:LineString>
+        <dip>45</dip>
+        <upperSeismoDepth>5</upperSeismoDepth>
+        <lowerSeismoDepth>25</lowerSeismoDepth>
+      </simpleFaultGeometry>
+      <magScaleRel>WC1994</magScaleRel>
+      <ruptAspectRatio>2.5</ruptAspectRatio>
+      <incrementalMFD minMag="5.95" binWidth="0.1">
+        <occurRates>0.0157979233 0.01286471 0.0104761088 0.0085310011 0.0069470432 0.00565718 0.0046068068 0.0037514572 0.0030549211 0.0024877114 0.002025816 0.0016496811 0.0013433835 0.0010939564 0.0008908406 0.0007254375 0.0005907449 </occurRates>
+      </incrementalMFD>
+      <rake>30</rake>
+      <hypoList>
+        <hypo alongStrike="50" downDip="35" weight="0.5"/>
+        <hypo alongStrike="60" downDip="55" weight="0.5"/>
+      </hypoList>
+      <slipList>
+        <slip weight="0.5">0</slip>
+        <slip weight="0.5">180</slip>
+      </slipList>
+    </simpleFaultSource>
+    <complexFaultSource id="1" name="Mount Diablo Thrust" tectonicRegion="Active Shallow Crust">
+      <complexFaultGeometry>
+        <faultTopEdge>
+          <gml:LineString>
+            <gml:posList>
+            -124.704 40.363 0.508856
+            -124.977 41.214 0.559326
+            -125.14 42.096 0.508856</gml:posList>
+          </gml:LineString>
+        </faultTopEdge>
+      </complexFaultGeometry>
+      <complexFaultGeometry>
+        <faultTopEdge>
+          <gml:LineString>
+            <gml:posList>
+            -124.704 40.363 0.508856
+            -124.977 41.214 0.559326
+            -125.14 42.096 0.508856</gml:posList>
+          </gml:LineString>
+        </faultTopEdge>
+      </complexFaultGeometry>
+      <complexFaultGeometry>
+        <faultTopEdge>
+          <gml:LineString>
+            <gml:posList>
+            -124.704 40.363 0.508856
+            -124.977 41.214 0.559326
+            -125.14 42.096 0.508856</gml:posList>
+          </gml:LineString>
+        </faultTopEdge>
+      </complexFaultGeometry>
+      <complexFaultGeometry>
+        <faultTopEdge>
+          <gml:LineString>
+            <gml:posList>
+            -124.704 40.363 0.508856
+            -124.977 41.214 0.559326
+            -125.14 42.096 0.508856</gml:posList>
+          </gml:LineString>
+        </faultTopEdge>
+      </complexFaultGeometry>
+      <magScaleRel>PeerMSR</magScaleRel>
+      <ruptAspectRatio>1.5</ruptAspectRatio>
+      <truncGutenbergRichterMFD aValue="5" abValue="1" minMag="5" maxMag="6"/>
+      <rake>30</rake>
+    </complexFaultSource>
+  </sourceModel>
+</nrml>
